@@ -1,0 +1,301 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Single</title>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //for-mobile-apps -->
+<link href='{% static "css/bootstrap.css" %}' rel="stylesheet"  type="text/css" media="all" />
+<link href='{% static "css/style.css" %}' rel="stylesheet" type="text/css" media="all" />
+<!-- js -->
+<script type="text/javascript" src='{% static "js/jquery-2.1.4.min.js" %}'></script>
+<!-- //js -->
+<link href='http://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+<style>
+table {width:90%;background:#ccc; margin: 10px auto;border-collapse:collapse;}
+/*border-collapse:collapse合并内外边距(去除表格单元格默认的2个像素内外边距*/
+ th, td {height:25px;line-height:25px;text-align:center;border:1px solid #ccc;}
+ th {background:#eee;font-weight:normal;}
+ tr {background:#fff;}
+ tr:hover {background:#cc0;}
+ td a {color:#06f;text-decoration:none;}
+ td a:hover {color:#06f;text-decoration:underline;} 
+
+</style>
+</head>
+	
+<body>
+<!-- header -->
+	<div class="header">
+		<div class="container">
+			<div class="w3l_header_left"> 
+				<ul>
+					<li><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>+ (123) 111 222 333</li>
+					<li><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span><a href="mailto:info@example.com">info@example.com</a></li>
+				</ul>
+			</div>
+			<div id="example2">	
+				<div class="wrapper2">
+					<div class="content-wrapper2">
+						<div class="search-button2">
+							<span></span>
+						</div>
+						<div class="search-box2">
+							<form action="#" method="post">
+								<input type="text" name="Search" placeholder="Search Here..." required="">
+								<input type="submit" value="Send"> <img src='{% static "images/close.png" %}' alt=" " />
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="w3l_header_right">
+				<ul>
+					<li><p style=" font-size:25px;" >欢迎您！{{username}}</p></li>
+					<li><a href="/login/" style="font-size:17px;"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>退出</a></li>
+				</ul>
+			</div>
+			<div class="clearfix"> </div>
+			<script type="text/javascript" src='{% static "js/demo.js" %}'></script>
+		</div>
+	</div>
+	<div class="logo_nav">
+		<div class="container">
+			<nav class="navbar navbar-default">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+				  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				  </button>
+					<div class="logo">
+						<h1><a class="navbar-brand" href="/index/">Truc<span>k</span>age</a></h1>
+					</div>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+
+				</div>
+				<!-- /.navbar-collapse -->
+			</nav>
+		</div>
+	</div>
+<!-- //header -->
+<!-- banner1 -->
+   <div class="container">
+
+	</div>
+
+   <div class="services-breadcrumb">
+		   <p style="font-size:25px;">客户订单服务</p>
+		 </div>
+
+
+<!-- //banner1 -->
+
+<!-- single -->
+
+
+
+          <!--  <div class="container">
+			 <ul>
+				<li><a style="font-size:20px;" href="">在线下单</a></li>
+
+				<li><a style="font-size:20px;" href="">订单管理</a></li>
+			 </ul>
+			</div>
+          -->
+	   <div class="single">
+		<div class="container">
+			<div class="col-md-4 agile_single_left">
+				<div class="agileits_recent_posts">
+
+					<div class="agileits_recent_posts_grid">
+
+						<div class="clearfix"> </div>
+					</div>
+					<div class="agileits_recent_posts_grid">
+						<div class="clearfix"> </div>
+					</div>
+					<div class="agileits_recent_posts_grid">
+
+						<div class="agileits_recent_posts_gridr">
+
+							<ul>
+								<li><a href="/single_order_get/"><h2>在线下单</h2></a></li>
+
+							</ul>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+					<div class="agileits_recent_posts_grid">
+						<div class="agileits_recent_posts_gridl">
+							<img src="images/9.jpg" alt=" " class="img-responsive">
+						</div>
+						<div class="agileits_recent_posts_gridr">
+
+							<ul>
+								<li><a href="/single_order_manage/"><h2>订单管理</h2></a></li>
+							</ul>
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+				</div>
+
+
+			</div>
+			<div class="col-md-8 agile_single_right">
+
+				<p style="font-size:20px;">*合作步骤</p>
+                      <p style="font-size:17px;">一、通过网络或朋友了解我们设计团队及作品。</p>
+                      <p style="font-size:17px;">二、电话咨询或到我们办公室进一步沟通。</p>
+                      <p style="font-size:17px;">三、在线下单、签订合作协议并在三天内交付首期设计费。</p>
+                      <p style="font-size:17px;">四、设计师与业主进行设计前期沟通（此过程大约需要7～15天时间），并由我方提交业主具体需求</p>
+                      <p style="font-size:17px;">五、业主通过在线预约，我方按时到现场设计（双方到工地进行至少6个小时的现场沟通及设计）。</p>
+                      <p style="font-size:17px;">六、现场设计结束后如方案无修改，我方设计师上传设计方案，大约7～15天内开工。</p>
+                      <p style="font-size:17px;">七、施工过程中设计师根据施工环节点到工地进行施工跟进。</p>
+                      <p style="font-size:17px;">八、基础装修进入尾声时，后期配饰设计工作开始。</p>
+                      <p style="font-size:17px;">九、完成订单，在线确认。</p>
+
+
+
+			</div>
+			<br>
+			<br>
+			<div class="clearfix"> </div>
+				<h3>你的订单信息如下：</h3>
+   <table style="withd:700px;" border="1">
+    <tr>
+        <th>姓名</th>
+        <th>地址</th>
+        <th>联系方式</th>
+        <th>邮箱</th>
+        <th>需求描述</th>
+        <th>下单时间</th>
+        <th>设计师是否接单</th>
+        <th>设计师姓名</th>
+        <th>合作协议</th>
+        <th>用户预约测量时间</th>
+        <th>设计方案</th>
+        <th>用户报价</th>
+        <th>订单是否完成</th>
+        <th>操作用户</th>
+        <div style="float:right;">
+         <a href="/orders_list/">
+           <button>查询订单</button>
+        </a>
+        </div>
+    </tr>
+     
+   </table>
+
+   
+ </div>
+   
+			</div>
+		</div>
+	</div>
+
+
+
+<!-- //single -->
+<!-- footer -->
+	<div class="footer">
+		<div class="container">
+			<div class="col-md-3 w3agile_footer_grid">
+				<h3>About Us</h3>
+				<p>Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis 
+					voluptatibus.</p>
+				<h2><a href="/index/">truc<span>k</span>age</a></h2>
+			</div>
+			<div class="col-md-2 w3agile_footer_grid">	
+				<h3>Links</h3>
+				<ul>
+					<li><a href="/index/">Home</a></li>
+					<li><a href="/services/">Services</a></li>
+					<li><a href="/about/">About</a></li>
+					<li><a href="/mail/">Mail Us</a></li>
+				</ul>
+			</div>
+			<div class="col-md-4 w3agile_footer_grid">
+				<h3>Twitter Posts</h3>
+				<ul class="w3agile_footer_grid_list">
+					<li>Ut aut reiciendis voluptatibus maiores alias, ut aut reiciendis.
+						<span>02 days ago</span></li>
+					<li>Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis 
+						voluptatibus.<span>03 days ago</span></li>
+				</ul>
+			</div>
+			<div class="col-md-3 w3agile_footer_grid">
+				<h3>Instagram</h3>
+				<div class="w3agile_footer_grid_left">
+					<a href=""><img src='{% static "images/9.jpg" %}' alt=" " class="img-responsive" /></a>
+				</div>
+				<div class="w3agile_footer_grid_left">
+					<a href=""><img src='{% static "images/10.jpg" %}'alt=" " class="img-responsive" /></a>
+				</div>
+				<div class="w3agile_footer_grid_left">
+					<a href=""><img src='{% static "images/11.jpg" %}' alt=" " class="img-responsive" /></a>
+				</div>
+				<div class="w3agile_footer_grid_left">
+					<a href=""><img src='{% static "images/8.jpg" %}' alt=" " class="img-responsive" /></a>
+				</div>
+				<div class="w3agile_footer_grid_left">
+					<a href=""><img src='{% static "images/7.jpg" %}' alt=" " class="img-responsive" /></a>
+				</div>
+				<div class="w3agile_footer_grid_left">
+					<a href=""><img src='{% static "images/6.jpg" %}' alt=" " class="img-responsive" /></a>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+	<div class="agileinfo_copy_right">
+		<div class="container">
+			<div class="agileinfo_copy_right_left">
+				<p>Copyright &copy; 2017.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
+			</div>
+			<div class="agileinfo_copy_right_right">
+				<ul class="social">
+					<li><a class="social-linkedin" href="#">
+						<i></i>
+						<div class="tooltip"><span>Facebook</span></div>
+						</a></li>
+					<li><a class="social-twitter" href="#">
+						<i></i>
+						<div class="tooltip"><span>Twitter</span></div>
+						</a></li>
+					<li><a class="social-google" href="#">
+						<i></i>
+						<div class="tooltip"><span>Google+</span></div>
+						</a></li>
+					<li><a class="social-facebook" href="#">
+						<i></i>
+						<div class="tooltip"><span>Pinterest</span></div>
+						</a></li>
+					<li><a class="social-instagram" href="#">
+						<i></i>
+						<div class="tooltip"><span>Instagram</span></div>
+						</a></li>
+				</ul>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //footer -->
+<!-- for bootstrap working -->
+	<script src='{% static "js/bootstrap.js" %}'></script>
+<!-- //for bootstrap working -->
+</body>
+</html>

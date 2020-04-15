@@ -1,0 +1,32 @@
+
+
+<!-- login -->
+	<div class="login">
+		<div class="container">
+			<h6>登录</h6>
+			<h3>欢迎来到我们设计公司网站，请在下方输入您的帐号密码 
+				<a href="/login/">登录</a>；若无帐号，请先 <a href="/sign-up/">
+				注册</a> 帐号</h3>
+
+			<form action="/login/" method="post">
+                         {% csrf_token %}
+				<input type="text" name="username" value="User Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'User Name';}">
+				<input type="password" name="password" class="lock" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+                                
+				<div class="remember">
+					 <div class="w3agile_checkbox1">
+						   <label class="checkbox"><input type="checkbox" name="Checkbox" checked=""><i> </i>记住帐号</label>
+					 </div>
+					 <div class="w3agile_forgot">
+						<h4><a href=" ">忘记密码？</a></h4>
+					 </div>
+					<div class="clearfix"> </div>
+				</div>
+				<input type="submit" value="登录">
+			</form>
+
+			<div class="agile_back_home">
+				<a href="/index/">返回主页</a>
+			</div>
+		</div>
+	</div>

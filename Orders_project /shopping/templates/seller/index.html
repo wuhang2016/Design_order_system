@@ -1,0 +1,329 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>主页</title>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+		function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //for-mobile-apps -->
+<link href='{% static "css/bootstrap.css" %}' rel="stylesheet" type="text/css" media="all" />
+<link href='{% static "css/style.css" %}' rel="stylesheet" type="text/css" media="all" />
+<!-- js -->
+<script type="text/javascript" src='{% static "js/jquery-2.1.4.min.js" %}' ></script>
+<!-- //js -->
+<!-- load-more -->
+<script>
+	$(document).ready(function () {
+		size_li = $("#myList li").size();
+		x=1;
+		$('#myList li:lt('+x+')').show();
+		$('#loadMore').click(function () {
+			x= (x+1 <= size_li) ? x+1 : size_li;
+			$('#myList li:lt('+x+')').show();
+		});
+		$('#showLess').click(function () {
+			x=(x-1<0) ? 1 : x-1;
+			$('#myList li').not(':lt('+x+')').hide();
+		});
+	});
+</script>
+<!-- //load-more -->
+<link href='http://fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic'  rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+</head>
+	
+<body>
+<!-- header -->
+	<div class="header">
+		<div class="container">
+			<div class="w3l_header_left"> 
+				<ul>
+					<li><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>+（86）111 2222</li>
+					<li><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span><a href="mailto:info@example.com">8888@example.com</a></li>
+				</ul>
+			</div>
+			<div id="example2">	
+				<div class="wrapper2">
+					<div class="content-wrapper2">
+						<div class="search-button2">
+							<span></span>
+						</div>
+						<div class="search-box2">
+							<form action="#" method="post">
+								<input type="text" name="Search" placeholder="在这里输入..." required="">
+								<input type="submit" value="搜索"> <img src='{% static "images/close.png" %}'alt=" " />
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="w3l_header_right">
+				<ul>
+					<li><a href="{%url 'Seller:login' %}"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>登录</a></li>
+					<li><a href="{%url 'Seller:sign-up' %}"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>注册</a></li>
+				</ul>
+			</div>
+			<div class="clearfix"> </div>
+			<script type="text/javascript" src='{% static "js/demo.js" %}'></script>
+		</div>
+	</div>
+	<div class="logo_nav">
+		<div class="container">
+			<nav class="navbar navbar-default">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+				  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				  </button>
+					<div class="logo">
+						<h1><a class="navbar-brand" href="/index/">天艺<span>设</span>计</a></h1>
+					</div>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+{% block content %}
+				<div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+					<nav class="link-effect-2" id="link-effect-2">
+						<ul class="nav navbar-nav">
+							<li class="active"><a href="/index/"><span data-hover="Home">主页</span></a></li>
+							<li><a href="/services/"><span data-hover="Services">服务</span></a></li>
+							<li><a href="/about/"><span data-hover="About">关于我们</span></a></li>
+							
+							<li><a href="/mail/"><span data-hover="Mail Us">联系我们</span></a></li>
+						</ul>
+					</nav>
+				</div>
+{% endblock %}
+				<!-- /.navbar-collapse -->
+			</nav>
+		</div>
+	</div>
+<!-- //header -->
+<!-- banner -->
+	<div class="banner">
+		<div class="container">
+			<div class="w3ls_banner_info">
+				<h2>天艺设计</h2>
+				<p>为设计而生
+					因作品而活</p>
+				<div class="wthree_more">
+					<a href="" class="button--wayra button--border-thick button--text-upper button--size-s">了解更多</a>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- //banner -->
+
+<!-- banner-bottom -->
+	<div class="banner-bottom">
+		<div class="container">
+			<div class="col-md-6 banner_bottom_left">
+				<h3>what I see, what I don’t see</h3>
+				<p><i>时间与空间</i> 何为“家居空间”？家居空间的设计是该多一点“文艺范”的情绪？还是理应遵循高大上的学科原则？在这个飞速变化的世界里，还有可能做到真正的“创新”吗？</p>
+				<div class="wthree_more wthree_more1">
+					<a href="" class="button--wayra button--border-thick button--text-upper button--size-s">阅读更多
+</a>
+				</div>
+			</div>
+			<div class="col-md-6 banner_bottom_right">
+				<div class="wthree_banner_bottom_right_grids">
+					<div class="col-md-6 banner_bottom_right_grid">
+						<div class="view view-tenth">
+							<div class="agile_text_box">
+								<i></i>
+								<h3>上门服务</h3>
+								<p>订单下达,我们将会派出工作人员上门测量,对接需求</p>
+							</div>
+							<div class="mask">
+								<img src='{% static "images/1.jpg" % }' class="img-responsive" alt="" />
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 banner_bottom_right_grid">
+						<div class="view view-tenth">
+							<div class="agile_text_box">
+								<i class="men"></i>
+								<h3>服务支持</h3>
+								<p>24小时客服电话畅通,接听您的诉求和反馈</p>
+							</div>
+							<div class="mask">
+								<img src='{% static "images/2.jpg" %}' class="img-responsive" alt="" />
+							</div>
+						</div>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+				<div class="wthree_banner_bottom_right_grids">
+					<div class="col-md-6 banner_bottom_right_grid">
+						<div class="view view-tenth">
+							<div class="agile_text_box">
+								<i class="shipping"></i>
+								<h3>线上订单快速响应</h3>
+								<p>24小时下单,我们将在您下单后的一小时内安排客服反馈</p>
+							</div>
+							<div class="mask">
+								<img src='{% static "images/3.jpg" %}' class="img-responsive" alt="" />
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 banner_bottom_right_grid">
+						<div class="view view-tenth">
+							<div class="agile_text_box">
+								<i class="clock"></i>
+								<h3>工期保证</h3>
+								<p>在你支付首款后,将按照协商的时间进度,按时提供设计方案及实施装修</p>
+							</div>
+							<div class="mask">
+								<img src='{% static "images/4.jpg" %}' class="img-responsive" alt="" />
+							</div>
+						</div>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- banner-bottom -->
+
+<!-- banner-bottom1 -->
+	<div class="banner-bottom1">
+		<div class="col-md-6 agile_banner_bottom1_left">
+			<img src='{% static "images/5.jpg" %}'alt=" " class="img-responsive" />
+		</div>
+		<div class="col-md-6 agile_banner_bottom1_right">
+			<h3>共享空间-"WeCafe"</h3>
+			<p>这是很早就提出的“共享”概念——“WeCafe”的意思就是，在其中不同的使用者的不同关系导致不同的使用和不同的空间观感，既是咖啡馆、聚会场所，又是工作室和展厅，其中就连家具也是可变的展示界面。</p>
+			<div class="details">
+				<a href="">更多细节</a>
+			</div>
+		</div>
+		<div class="clearfix"> </div>
+	</div>
+<!-- banner-bottom1 -->
+
+<!-- news -->
+	<div class="news">
+		<div class="container">
+			<h3>新闻</h3>
+			<p class="quia">我们的公众号</p>
+			<div class="agileits_news_grids">
+				<div class="tab-1 resp-tab-content">
+					<div class="load_more">	
+						<ul id="myList">
+							<li>
+								<div class="l_g">
+									<div class="col-md-6 agileits_news_grid_left">
+										<div class="agileits_news_grid_left_gridl">
+											<p class="para1">28 <span>11 - 2019</span></p>
+											<p class="para1"><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="#"><span>评论 - 8</span></a></p>
+											<p><i class="glyphicon glyphicon-eye-open" aria-hidden="true"></i><a href="#"><span>访问- 393</span></a></p>
+										</div>
+										<div class="agileits_news_grid_left_gridr">
+											<img src= '{% static "images/6.png" %}' alt=" " class="img-responsive" />
+											<h4><a href="">关于"墙",我们还可以怎么做</a></h4>
+											<p>一堵墙可不可以既是实体又是穿透的界面？ 一个空间可以不可以既具有厚度又轻薄如纸？日常空间，最好不都是简单的盒子和“容器”。</p>
+										</div>
+										<div class="clearfix"> </div>
+									</div>
+									<div class="col-md-6 agileits_news_grid_left">
+										<div class="agileits_news_grid_left_gridl">
+											<p class="para1">30 <span>11 - 2019</span></p>
+											<p class="para1"><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="#"><span>评论- 5</span></a></p>
+											<p><i class="glyphicon glyphicon-eye-open" aria-hidden="true"></i><a href="#"><span>访问- 347</span></a></p>
+										</div>
+										<div class="agileits_news_grid_left_gridr">
+											<img src='{% static "images/7.jpg" %}' alt=" " class="img-responsive" />
+											<h4><a href="">采光,需要亮色</a></h4>
+											<p>现代风格的设计，整个空间被改造后，光线特别的明亮。设计师把灯带全部隐藏在天花板内部，这样看不到裸露的灯带，但是客厅却变得格外的明亮。
+
+L型的布艺沙发，一张造型简易的茶几，蓝色的欧式沙发椅。地板和茶几桌面的颜色一致。</p>
+										</div>
+										<div class="clearfix"> </div>
+									</div>
+									<div class="clearfix"> </div>
+								</div>
+							</li>
+							<li>
+								<div class="l_g">
+									<div class="col-md-6 agileits_news_grid_left">
+										<div class="agileits_news_grid_left_gridl">
+											<p class="para1">28 <span>11- 2016</span></p>
+											<p class="para1"><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="#"><span>评论- 8</span></a></p>
+											<p><i class="glyphicon glyphicon-eye-open" aria-hidden="true"></i><a href="#"><span>访问- 21</span></a></p>
+										</div>
+										
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- //news -->
+
+<!-- footer -->
+	<div class="footer">
+		<div class="container">
+			<div class="col-md-3 w3agile_footer_grid" style="width:350px">
+				<h3 style="width:200px">关于我们</h3>
+				<p>
+天艺设计家居创办于2011年，多年来致力于传播居家生活美学， 带给国人尊贵、品位、精致、舒适的的生活方式，提供全方位的一站式家居解决方案以及诚恳专业的服务。</p>
+				<h2><a href="/index/">天艺<span>设</span>计</a></h2>
+			</div>
+			<div class="col-md-2 w3agile_footer_grid" style="width:350px">	
+				<h3 style="width:200px">相关链接</h3>
+				<ul>
+					<li><a href="/index/">Home</a></li>
+					<li><a href="/services/">服务</a></li>
+					<li><a href="/about/">关于</a></li>
+					<li><a href="/mail/">给我们发邮件</a></li>
+				</ul>
+			</div>
+			
+			<div class="col-md-3 w3agile_footer_grid" style="width:350px">
+				<h3 style="width:200px">分享</h3>
+				<div class="w3agile_footer_grid_left">
+					<a href=""><img src='{% static "images/9.jpg" %}' alt=" " class="img-responsive" /></a>
+				</div>
+				<div class="w3agile_footer_grid_left">
+					<a href=""><img src='{% static "images/10.jpg" %}' alt=" " class="img-responsive" /></a>
+				</div>
+				<div class="w3agile_footer_grid_left">
+					<a href=""><img src='{% static "images/11.jpg" %}' alt=" " class="img-responsive" /></a>
+				</div>
+				<div class="w3agile_footer_grid_left">
+					<a href=""><img src='{% static "images/8.jpg" %}' alt=" " class="img-responsive" /></a>
+				</div>
+				<div class="w3agile_footer_grid_left">
+					<a href=""><img src='{% static "images/7.jpg" %}' alt=" " class="img-responsive" /></a>
+				</div>
+				<div class="w3agile_footer_grid_left">
+					<a href=""><img src='{% static "images/6.jpg" %}' alt=" " class="img-responsive" /></a>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+	<div class="agileinfo_copy_right">
+		<div class="container">
+			<div class="agileinfo_copy_right_left">
+				<p>Copyright &copy; 2019.Company name All rights reserved <a href="http://www.cssmoban.com/" target="_blank" title="天艺设计">天艺设计</a> - Collect from <a href="http://www.cssmoban.com/" title="天艺设计" target="_blank">天艺设计</a></p>
+			</div>
+			
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!-- //footer -->
+<!-- for bootstrap working -->
+	<script src='{% static "js/bootstrap.js" %}'></script>
+<!-- //for bootstrap working -->
+</body>
+</html>

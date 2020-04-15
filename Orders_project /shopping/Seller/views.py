@@ -1,0 +1,291 @@
+
+from django.shortcuts import render, redirect , render_to_response
+from Seller import models
+import hashlib
+import datetime
+from django.views.decorators.csrf import csrf_protect
+import time
+
+
+# Create your views here.
+
+def pwd_encrypt(password):
+    """使用 md5 进行 密码加密"""
+    md5 = hashlib.md5()
+    md5.update(password.encode())
+    result = md5.hexdigest()
+    return result
+
+
+# 添加装饰器
+def seller_decorator(func):
+    def inner(request, *args, **kwargs):
+        username = request.COOKIES.get('username')
+        #nickname = request.session.get('nickname')
+        if username :
+            return func(request, *args, **kwargs)
+        else:
+            """重定向到登陆页面"""
+            return redirect('/login/')
+
+    return inner
+
+
+
+def index(request):
+    return render(request, 'seller/index.html')
+
+
+# 登陆功能
+def login(request):
+    result = {'error': ''}
+    if request.method == 'POST':
+        name = request.POST.get('username')
+        seller_lst = models.Seller.objects.filter(username=name)  # QuerySet
+        # user_lst = models.Seller.objects.filter(username=name).first() # QuerySet
+        if seller_lst:
+            password = request.POST.get('password')
+            pwd = pwd_encrypt(password)  # 加密后的pwd
+            seller = seller_lst[0]
+            if seller.password == pwd:
+                # 添加cookie 和session
+                response = redirect('/single/')
+                response.set_cookie('username', seller.username,3600)
+                response.set_cookie('id', seller.id,3600)
+                #request.session['nickname'] = seller.nickname
+                return response
+            else:
+                result['error'] = '密码不正确'
+        else:
+            """用户名不存在"""
+            result['error'] = '用户名不存在'
+
+    return render(request, 'seller/login.html', {'result': result})
+
+
+def logout(request):
+    response = redirect('/login/')
+    response.delete_cookie('username')
+    response.delete_cookie('id')
+    #del request.session['nickname']
+    return response
+
+
+@seller_decorator
+def orders_add(request):
+    """添加订单"""
+    if request.method == 'POST':
+        # 1.获取数据 
+        orders_username = request.POST.get('name') #下单用户名
+        orders_address = request.POST.get('address') # 设计订单地址
+        orders_phone = request.POST.get('phone')  # 用户手机号码
+        orders_email = request.POST.get('email') #用户邮箱
+        orders_content = request.POST.get('content')  # 简单描述
+        
+    
+        # 2.保存数据库
+        o = models.Orders() 
+        o.orders_username = orders_username #下单用户名
+        o.orders_address = orders_address # 设计订单地址
+        o.orders_phone = orders_phone  # 用户手机号码
+        o.orders_email = orders_email #用户邮箱
+        o.orders_content = orders_content  # 简单描述
+        o.orders_time = datetime.datetime.now() # 下单时间
+        o.orders_designer_bool = 0 #设计师是否下单
+        o.orders_finish_bool = 0 
+        seller_id = request.COOKIES.get('id')
+        o.orders_seller = models.Seller.objects.get(id=int(seller_id))  # 获取下单帐号用户
+        #o.orders_seller_id = seller_id
+        o.save()
+        
+        return redirect('/single_order_manage/')
+
+    return render(request, 'seller/single_order_get.html')
+       
+'''
+        # 将上传的图片保存到数据库
+        for index, img in enumerate(imgs):
+            # 将图片保存到服务器
+            file_path = 'static/seller/images/{}_{}.{}'.format(goods_name, index, img.name.rsplit('.', 1)[1])
+            with open(file_path, 'wb') as f:
+                for i in img.chunks():
+                    f.write(i)
+            # 将图片的路径保存到数据库中
+            image = models.Image()  # goods_name_0.jpg, goods_name_1.jpg,
+            image_path = 'seller/images/{}_{}.{}'.format(goods_name, index, img.name.rsplit('.', 1)[1])
+            image.img_adress = image_path
+            image.img_label = img.name
+            image.img_description = 'this is a photo'
+            image.goods = g
+            image.save()
+
+'''
+@seller_decorator
+def single_orders_manage(request):
+      return render(request, 'seller/single_order_manage.html',{'username': username})        
+
+
+@seller_decorator
+#管理订单
+def orders_list(request):   
+     # 从数据库中获取所有订单记录，展示到页面上
+          seller_id = request.COOKIES.get('id')
+          
+          orders_list = models.Orders.objects.all().filter(orders_seller_id = int(seller_id))
+          username = request.COOKIES.get('username')
+          return render(request, 'seller/orders_list.html', {'orders_list':orders_list,'username': username})
+
+'''
+   else:
+        orders_username = request.POST.get('name') #下单用户名
+        orders_address = request.POST.get('address') # 设计订单地址
+        orders_phone = request.POST.get('phone')  # 用户手机号码
+        orders_email = models.CharField(max_length=32) #用户邮箱
+        orders_content = models.TextField()  # 简单描述
+        orders_time = models.DateField()  # 下单时间
+    
+        # 2.保存数据库
+        o = models.Orders() 
+        o.orders_username = orders_username #下单用户名
+        o.orders_address = orders_address # 设计订单地址
+        o.orders_phone = orders_phone  # 用户手机号码
+        o.orders_email = orders_email #用户邮箱
+        o.orders_content = orders_content  # 简单描述
+        seller_id = request.COOKIES.get('id')
+        o.orders_seller = models.Seller.objects.get(id=int(seller_id))  # 获取下单帐号用户
+        o.orders_seller_id = seller_id
+        o.save()
+
+
+
+import os
+
+@seller_decorator
+def orders_delete(request):
+    orders_id = request.GET.get('id')
+    orders_obj = models.Orders.objects.get(id=int(orders_id))
+    # 删除关联的图片
+    imgs_lst = orders_obj.image_set.all()
+    for img in imgs_lst:
+        print(img.img_adress.name)  # seller/images/fef_2.jpg
+        path = 'static/' + img.img_adress.name
+        os.remove(path)
+
+    imgs_lst.delete()
+    # 删除商品对象
+    goods_obj.delete()
+    return redirect('/seller/goods_list/')
+    
+'''
+
+#修改订单
+@seller_decorator
+def orders_change(request, pk):
+    """
+    :param request: 
+    :param pk: 接收到的文章的主键id
+    :return: 
+    """
+    if request.method == 'GET':
+        orders = models.Orders.objects.get( id = pk )
+        username = request.COOKIES.get('username')
+        return render(request, 'seller/orders_change.html', {'orders':orders,'username': username},)
+     
+    else:   
+        orders_username = request.POST.get('name') #下单用户名
+        orders_address = request.POST.get('address') # 设计订单地址
+        orders_phone = request.POST.get('phone')  # 用户手机号码
+        orders_email = request.POST.get('email') #用户邮箱
+        orders_content = request.POST.get('content')  # 简单描述
+        #更新数据库
+        orders = models.Orders.objects.get(id = pk)
+        orders.orders_username = orders_username #下单用户名
+        orders.orders_address = orders_address # 设计订单地址
+        orders.orders_phone = orders_phone  # 用户手机号码
+        orders.orders_email = orders_email #用户邮箱
+        orders.orders_content = orders_content  # 简单描述
+        orders.save()
+        return render(request, 'seller/orders_list.html',)
+   
+#删除订单
+@seller_decorator
+def orders_delete(request,pk):
+    orders = models.Orders.objects.get( id = pk )
+    
+    # 删除订单
+    orders.delete()
+    return redirect('/orders_list/')
+
+#预约时间
+@seller_decorator
+def orders_test_time(request,pk):
+    orders = models.Orders.objects.get( id = pk )
+    orders.orders_test_time = request.POST.get("test_time" )
+    orders.save()
+    return redirect('/orders_list/')
+
+# 注册功能
+def sign_up(request):
+    
+    '''seller.username = 'admin'  # 用户名
+    seller.password = pwd_encrypt('admin')  # 密码 --->>需要加密
+    seller.nickname = '老毛桃'  # 昵称
+    seller.photo = 'images/1.jpg'  # 卖家图片
+    seller.phone = '15300162488'  # 电话
+    seller.address = '北京昌平'  # 地址
+    seller.email = '1337765078@qq.com'  # 邮箱
+    seller.id_number = '131125111111111111'  # 身份证
+    '''
+ 
+    #return render(request, 'seller/login.html')
+    return render(request, 'seller/sign-up.html')
+
+
+def register(request):
+    seller = models.Seller()
+    if request.method == 'POST':
+        seller.username = request.POST.get('username')
+        #seller.nickname = request.POST.get('nickname')
+    
+        # user_lst = models.Seller.objects.filter(username=name).first() # QuerySet
+        password = request.POST.get('password')
+        seller.password = pwd_encrypt(password)  # 加密后的pwd
+    
+        seller.email = request.POST.get('email')
+        seller.phone = request.POST.get('phone',None)  
+        seller.save()
+        return render(request, 'seller/success.html')
+    else: 
+        return render(request, 'seller/sign-up.html')
+
+
+    
+@seller_decorator
+def single(request):
+    username = request.COOKIES.get('username')
+    if not username:
+        return redirect('/login/')
+    return render(request, 'seller/single.html',{'username': username})   
+
+@seller_decorator
+def single_order_get(request):
+    username = request.COOKIES.get('username')
+    return render(request, 'seller/single_order_get.html',{'username': username}) 
+
+@seller_decorator
+def single_order_manage(request):
+    username = request.COOKIES.get('username')
+    return render(request, 'seller/single_order_manage.html',{'username': username}) 
+
+def about(request):
+    return render(request, 'seller/about.html') 
+
+def services(request):
+    return render(request, 'seller/services.html') 
+
+def mail(request):
+    return render(request, 'seller/mail.html') 
+
+
+    
+# Create your views here.

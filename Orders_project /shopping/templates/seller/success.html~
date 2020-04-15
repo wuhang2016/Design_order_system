@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>注册页</title>
+    <script>
+            function daojishi(num){
+                    var djs = document.getElementById("djs");
+                    djs.innerHTML = num;
+                    if(--num > 0){
+                        setTimeout("daojishi("+num+")",1000)
+                    }else{
+                        location.href="/login/";
+                    }
+            }
+    </script>
+</head>
+<body>
+    <h1>注册成功！</h1>
+    <p><span id="djs">5</span>秒后返回到主页<a href="/login/"  onclick="fanhui();">返回</a></p>
+    <script>
+           daojishi(5);
+    </script>
+</body>
+<script>
+            function fanhui(){
+                window.history.back();
+            }
+       </script>    
+
+</html>
+
+
+
+    
